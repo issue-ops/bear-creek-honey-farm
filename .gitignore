@@ -1,0 +1,33 @@
+# Dependency directory
+node_modules/
+
+# Coverage directory used by tools like istanbul
+coverage
+reports
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Extra
+tmp/
+.env
+
+# next.js
+.next
+
+# production
+build
+
+# local env files
+.env*.local
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
