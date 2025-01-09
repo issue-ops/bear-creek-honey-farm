@@ -1,6 +1,6 @@
 {
-  "extends": ["stylelint-config-standard", "stylelint-config-standard-scss"],
-  "plugins": ["stylelint-scss"],
+  "extends": ["stylelint-config-standard"],
+  "ignoreFiles": ["out/**", "node_modules/**"],
   "rules": {
     "at-rule-no-unknown": null
   }

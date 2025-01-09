@@ -19,6 +19,8 @@ DISABLE:
 # List of disabled linters keys
 # https://megalinter.io/latest/config-activation/
 DISABLE_LINTERS:
+  - HTML_HTMLHINT
+  - HTML_DJLINT
   - MARKDOWN_MARKDOWN_LINK_CHECK
   - MARKDOWN_MARKDOWN_TABLE_FORMATTER
   - REPOSITORY_GRYPE
@@ -134,3 +136,5 @@ TYPESCRIPT_DEFAULT_STYLE: prettier
 # Will parse the entire repository and find all files to validate
 # When set to false, only new or edited files will be parsed for validation
 VALIDATE_ALL_CODEBASE: true
+
+CSS_STYLELINT_CONFIG_FILE: .stylelintrc.json
