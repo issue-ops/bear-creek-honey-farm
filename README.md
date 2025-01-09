@@ -1,10 +1,10 @@
 # IssueOps Demo Repository
 
+![Logo](./images/logo.png)
+
 Welcome to Bear Creek Honey Farm! This repository hosts a fake Bed and Breakfast
 website using GitHub Pages. This acts as a starting point for various IssueOps
 demonstrations. Feel free to check it out!
-
-TODO: Add Link to GH Pages
 
 > [!NOTE]
 >
