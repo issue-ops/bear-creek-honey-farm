@@ -29,7 +29,7 @@ export default function Home() {
                 <Dialog>
                   <DialogTrigger>
                     <Image
-                      src="/logo.png"
+                      src="/bear-creek-honey-farm/logo.png"
                       alt="AI Generated Logo"
                       width={256}
                       height={256}
@@ -41,7 +41,7 @@ export default function Home() {
                       <DialogTitle>AI Generated Logo</DialogTitle>
                       <DialogDescription>
                         <Image
-                          src="/logo.png"
+                          src="/bear-creek-honey-farm/logo.png"
                           alt="AI Generated Logo"
                           width={512}
                           height={512}
@@ -56,7 +56,7 @@ export default function Home() {
                 <Dialog>
                   <DialogTrigger>
                     <Image
-                      src="/building.png"
+                      src="/bear-creek-honey-farm/building.png"
                       alt="AI Generated Building"
                       width={256}
                       height={256}
@@ -68,7 +68,7 @@ export default function Home() {
                       <DialogTitle>AI Generated Building</DialogTitle>
                       <DialogDescription>
                         <Image
-                          src="/building.png"
+                          src="/bear-creek-honey-farm/building.png"
                           alt="AI Generated Building"
                           width={512}
                           height={512}
@@ -83,7 +83,7 @@ export default function Home() {
                 <Dialog>
                   <DialogTrigger>
                     <Image
-                      src="/creek.png"
+                      src="/bear-creek-honey-farm/creek.png"
                       alt="AI Generated Creek"
                       width={256}
                       height={256}
@@ -95,7 +95,7 @@ export default function Home() {
                       <DialogTitle>AI Generated Creek</DialogTitle>
                       <DialogDescription>
                         <Image
-                          src="/creek.png"
+                          src="/bear-creek-honey-farm/creek.png"
                           alt="AI Generated Creek"
                           width={512}
                           height={512}
@@ -110,7 +110,7 @@ export default function Home() {
                 <Dialog>
                   <DialogTrigger>
                     <Image
-                      src="/farm.png"
+                      src="/bear-creek-honey-farm/farm.png"
                       alt="AI Generated Honey Farm"
                       width={256}
                       height={256}
@@ -122,7 +122,7 @@ export default function Home() {
                       <DialogTitle>AI Generated Honey Farm</DialogTitle>
                       <DialogDescription>
                         <Image
-                          src="/farm.png"
+                          src="/bear-creek-honey-farm/farm.png"
                           alt="AI Generated Honey Farm"
                           width={512}
                           height={512}
@@ -137,7 +137,7 @@ export default function Home() {
                 <Dialog>
                   <DialogTrigger>
                     <Image
-                      src="/room.png"
+                      src="/bear-creek-honey-farm/room.png"
                       alt="AI Generated Room"
                       width={256}
                       height={256}
@@ -149,7 +149,7 @@ export default function Home() {
                       <DialogTitle>AI Generated Room</DialogTitle>
                       <DialogDescription>
                         <Image
-                          src="/room.png"
+                          src="/bear-creek-honey-farm/room.png"
                           alt="AI Generated Room"
                           width={512}
                           height={512}
@@ -164,7 +164,7 @@ export default function Home() {
                 <Dialog>
                   <DialogTrigger>
                     <Image
-                      src="/food.png"
+                      src="/bear-creek-honey-farm/food.png"
                       alt="AI Generated Food"
                       width={256}
                       height={256}
@@ -176,7 +176,7 @@ export default function Home() {
                       <DialogTitle>AI Generated Food</DialogTitle>
                       <DialogDescription>
                         <Image
-                          src="/food.png"
+                          src="/bear-creek-honey-farm/food.png"
                           alt="AI Generated Food"
                           width={512}
                           height={512}

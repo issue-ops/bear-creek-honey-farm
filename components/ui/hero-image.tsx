@@ -5,7 +5,7 @@ export default function HeroImage() {
     <div className="relative w-full h-0 pb-[56.25%]">
       <Image
         className="absolute top-0 left-0 w-full h-full object-cover"
-        src="/hero.png"
+        src="/bear-creek-honey-farm/hero.png"
         alt="Hero Image"
         layout="fill"
         priority
