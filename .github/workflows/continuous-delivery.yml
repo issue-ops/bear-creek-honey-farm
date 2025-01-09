@@ -10,6 +10,7 @@ on:
 
 permissions:
   contents: write
+  pages: write
 
 jobs:
   release:
@@ -53,6 +54,20 @@ jobs:
         with:
           tag: v${{ steps.tag.outputs.version }}
 
-      - name: Publish
-        id: publish
-        run: npm run deploy
+      - name: Setup Pages
+        id: setup-pages
+        uses: actions/configure-pages@v4
+        with:
+          static_site_generator: next
+
+      - name: Build
+        id: build
+        run: npm run build
+
+      - name: Deploy
+        id: deploy
+        uses: actions/deploy-pages@v4
+        with:
+          branch: gh-pages
+          folder: out
+          token: ${{ secrets.GITHUB_TOKEN }}
