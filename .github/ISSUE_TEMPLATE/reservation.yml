@@ -4,7 +4,7 @@ title: '[Reservation] '
 labels:
   - reservation
 projects:
-  - issue-ops/1
+  - issue-ops/2
 body:
   - type: markdown
     attributes:
