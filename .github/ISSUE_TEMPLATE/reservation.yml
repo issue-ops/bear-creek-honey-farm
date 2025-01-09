@@ -1,0 +1,14 @@
+name: Reservation Request
+description: Submit a new reservation request
+title: '[Reservation] '
+labels:
+  - reservation
+projects:
+  - issue-ops/1
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Welcome to Bear Creek Honey Farm! Please fill out the following information to request a new reservation.
+
+        Please note that this is just a technical demonstration. We are not taking reservations because we do not exist.
