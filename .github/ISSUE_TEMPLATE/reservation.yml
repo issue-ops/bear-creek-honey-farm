@@ -12,3 +12,11 @@ body:
         Welcome to Bear Creek Honey Farm! Please fill out the following information to request a new reservation.
 
         Please note that this is just a technical demonstration. We are not taking reservations because we do not exist.
+  - type: input
+    id: some-input
+    attributes:
+      label: Some Input
+      description: This is a test input
+      placeholder: ex. hello
+    validations:
+      required: false
