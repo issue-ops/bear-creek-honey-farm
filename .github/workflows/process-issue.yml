@@ -26,6 +26,20 @@ jobs:
         id: checkout
         uses: actions/checkout@v4
 
+      # Since this workflow include custom validation scripts, we need to
+      # install Node.js and any dependencies.
+      - name: Setup Node.js
+        id: setup-node
+        uses: actions/setup-node@vX.X.X
+        with:
+          cache: npm
+          node-version-file: .node-version
+
+      # Install dependencies from `package.json`.
+      - name: Install Dependencies
+        id: install
+        run: npm install
+
       # GitHub App authentication is required if you want to interact with any
       # resources outside the scope of the repository this workflow runs in.
       - name: Get GitHub App Token

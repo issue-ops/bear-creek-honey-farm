@@ -1,0 +1,7 @@
+validators:
+  - field: start
+    script: is-date
+  - field: end
+    script: is-date
+  - field: guests
+    script: is-number
