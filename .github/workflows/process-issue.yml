@@ -79,7 +79,7 @@ jobs:
         id: validate
         uses: issue-ops/validator@v3
         with:
-          add-comment: false
+          add-comment: true
           github-token: ${{ steps.token.outputs.token }}
           issue-form-template: reservation.yml
           issue-number: ${{ github.event.issue.number }}
@@ -117,3 +117,12 @@ jobs:
               ${JSON.parse('${{ steps.validate.outputs.errors }}').map(error => `- ${error}`).join('\n')}
               `
             })
+
+      - name: Process Reservation Request
+        id: process
+        uses: issue-ops/demo-reservation-action@main
+        with:
+          action: init
+          issue_body: ${{ steps.parse.outputs.json }}
+          github_token: ${{ steps.token.outputs.token }}
+          workspace: ${{ github.workspace }}
