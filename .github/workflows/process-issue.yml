@@ -100,5 +100,6 @@ jobs:
 
               The following validation errors occurred:
 
-              ${{ steps.validate.outputs.errors }}`
+              ${JSON.parse('${{ steps.validate.outputs.errors }}').map(error => `- ${error}`).join('\n')}
+              `
             })
