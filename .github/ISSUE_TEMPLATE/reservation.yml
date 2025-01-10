@@ -1,6 +1,6 @@
 name: Reservation Request
 description: Submit a new reservation request
-title: '[Reservation] '
+title: '[Reservation] New Reservation Request'
 labels:
   - reservation
 projects:
@@ -13,10 +13,48 @@ body:
 
         Please note that this is just a technical demonstration. We are not taking reservations because we do not exist.
   - type: input
-    id: some-input
+    id: start
     attributes:
-      label: Some Input
-      description: This is a test input
-      placeholder: ex. hello
+      label: Check-In Date (MM/DD/YYYY)
+      description: Check-in date for your reservation
+      placeholder: 01/01/2025
     validations:
-      required: false
+      required: true
+  - type: input
+    id: end
+    attributes:
+      label: Check-Out Date (MM/DD/YYYY)
+      description: Check-out date for your reservation
+      placeholder: 01/10/2025
+    validations:
+      required: true
+  - type: input
+    id: guests
+    attributes:
+      label: Number of Guests
+      description: Total number of guests in your party
+      placeholder: '2'
+    validations:
+      required: true
+  - type: dropdown
+    id: room
+    attributes:
+      label: Room Type
+      description: Select the type of room you would like to reserve
+      multiple: false
+      options:
+        - Single Queen
+        - Double Queen
+        - King Suite
+    validations:
+      required: true
+  - type: checkboxes
+    id: amenities
+    attributes:
+      label: Amenities
+      description: Select any amenities you would like included
+      options:
+        - label: Breakfast
+        - label: Lunch
+        - label: Dinner
+        - label: Wi-Fi
