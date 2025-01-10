@@ -13,7 +13,7 @@ body:
 
         Please note that this is just a technical demonstration. We are not taking reservations because we do not exist.
   - type: input
-    id: start
+    id: check-in
     attributes:
       label: Check-In Date (MM/DD/YYYY)
       description: Check-in date for your reservation
@@ -21,7 +21,7 @@ body:
     validations:
       required: true
   - type: input
-    id: end
+    id: check-out
     attributes:
       label: Check-Out Date (MM/DD/YYYY)
       description: Check-out date for your reservation
