@@ -1,7 +1,7 @@
 validators:
   - field: check-in
-    script: is-date
+    script: is-date.js
   - field: check-out
-    script: is-date
+    script: is-date.js
   - field: guests
-    script: is-number
+    script: is-number.js
