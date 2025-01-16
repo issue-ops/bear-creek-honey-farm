@@ -41,8 +41,11 @@ export default async (field) => {
     `${core.getInput('workspace', { required: true })}/.github/ISSUE_TEMPLATE/${core.getInput('issue-form-template', { required: true })}`,
     'utf8'
   )
-  console.log(github.context)
-  const reservation = parseIssue(github.context.issue.body, issueTemplateBody)
+  console.log(github)
+  const reservation = parseIssue(
+    github.context.payload.issue.body,
+    issueTemplateBody
+  )
 
   console.log(reservation)
 
@@ -54,8 +57,6 @@ export default async (field) => {
       'utf8'
     )
   )
-
-  console.log(reservation)
 
   // Get the rooms that match the room type from the JSON file.
   const matching = rooms.filter((room) => room.type === reservation.room)
