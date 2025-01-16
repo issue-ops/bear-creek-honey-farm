@@ -15,8 +15,9 @@
  * @returns {Promise<string>} An error message or `'success'`
  */
 export default async (field) => {
-  const { readFileSync } = await import('fs')
   const core = await import('@actions/core')
+  const { parseIssue } = await import('@github/issue-parser')
+  const { readFileSync } = await import('fs')
 
   // In this validator, the only type of input we are expecting is a `string` (a
   // numeric string). If the field is not a string, return an error message. In
@@ -40,12 +41,16 @@ export default async (field) => {
 
   // Parse the issue body into a more usable format. Include the issue template
   // so that the parser can extract the metadata from the issue.
-  const parsedIssueBody = JSON.parse(
-    core.getInput('parsed-issue-body', { required: true })
+  const reservation = parseIssue(
+    core.getInput('parsed-issue-body', { required: true }),
+    readFileSync(
+      `${core.getInput('workspace', { required: true })}/.github/ISSUE_TEMPLATE/${core.getInput('issue-form-template', { required: true })}`,
+      'utf8'
+    )
   )
 
   // Get the rooms that match the room type from the JSON file.
-  const matching = rooms.filter((room) => room.type === parsedIssueBody.room[0])
+  const matching = rooms.filter((room) => room.type === reservation.room)
 
   // If the matching room does not support this many guests, return an error.
   if (matching[0].max_guests < Number(field))

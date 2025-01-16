@@ -32,6 +32,7 @@ export default async (field) => {
   // `@octokit/rest` library to make requests to the GitHub API.
   const core = await import('@actions/core')
   const github = await import('@actions/github')
+  const { parseIssue } = await import('@github/issue-parser')
   const { readFileSync } = await import('fs')
 
   // Parse the issue body into a more usable format. Include the issue template
@@ -40,8 +41,9 @@ export default async (field) => {
     `${core.getInput('workspace', { required: true })}/.github/ISSUE_TEMPLATE/${core.getInput('issue-form-template', { required: true })}`,
     'utf8'
   )
-  const parsedIssueBody = JSON.parse(
-    core.getInput('parsed-issue-body', { required: true })
+  const reservation = parseIssue(
+    core.getInput('parsed-issue-body', { required: true }),
+    issueTemplateBody
   )
 
   // Get the list of rooms from the JSON file. In a real-world scenario, you
@@ -53,13 +55,15 @@ export default async (field) => {
     )
   )
 
+  console.log(reservation)
+
   // Get the rooms that match the room type from the JSON file.
-  const matching = rooms.filter((room) => room.type === parsedIssueBody.room)
+  const matching = rooms.filter((room) => room.type === reservation.room)
 
   // Get the conflicting reservations (any confirmed reservations with the same
   // room type and overlapping date ranges).
   const conflicting = await getConflictingReservations(
-    parsedIssueBody,
+    reservation,
     issueTemplateBody,
     github.context.repo.owner,
     github.context.repo.repo
