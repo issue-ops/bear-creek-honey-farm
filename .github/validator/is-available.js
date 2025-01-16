@@ -53,15 +53,15 @@ export default async (field) => {
   )
 
   // Get the rooms that match the room type from the JSON file.
-  const matching = rooms.filter((room) => room.type === reservation.room)
+  const matching = rooms.filter((room) => room.type === parsedIssueBody.room)
 
   // Get the conflicting reservations (any confirmed reservations with the same
   // room type and overlapping date ranges).
   const conflicting = await getConflictingReservations(
     parsedIssueBody,
     issueTemplateBody,
-    owner,
-    repository
+    github.context.repo.owner,
+    github.context.repo.repo
   )
 
   // If there are conflicting reservations greater than or equal to the number
