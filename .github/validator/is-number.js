@@ -38,8 +38,14 @@ export default async (field) => {
     )
   )
 
+  console.log(rooms)
+
+  console.log(field)
+
   // Get the rooms that match the room type from the JSON file.
   const matching = rooms.filter((room) => room.type === field)
+
+  console.log(matching)
 
   // If the matching room does not support this many guests, return an error.
   if (matching[0].max_guests < Number(field))
