@@ -31,6 +31,7 @@ export default async (field) => {
   // For example, the above would be required here since we are importing the
   // `@octokit/rest` library to make requests to the GitHub API.
   const core = await import('@actions/core')
+  const github = await import('@actions/github')
   const { readFileSync } = await import('fs')
 
   // Parse the issue body into a more usable format. Include the issue template
