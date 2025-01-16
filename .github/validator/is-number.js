@@ -44,12 +44,8 @@ export default async (field) => {
     core.getInput('parsed-issue-body', { required: true })
   )
 
-  console.log(JSON.stringify(parsedIssueBody))
-
   // Get the rooms that match the room type from the JSON file.
-  const matching = rooms.filter((room) => room.type === parsedIssueBody.room)
-
-  console.log(matching)
+  const matching = rooms.filter((room) => room.type === parsedIssueBody.room[0])
 
   // If the matching room does not support this many guests, return an error.
   if (matching[0].max_guests < Number(field))
