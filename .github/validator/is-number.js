@@ -16,6 +16,7 @@
  */
 export default async (field) => {
   const core = await import('@actions/core')
+  const github = await import('@actions/github')
   const { parseIssue } = await import('@github/issue-parser')
   const { readFileSync } = await import('fs')
 
@@ -42,7 +43,7 @@ export default async (field) => {
   // Parse the issue body into a more usable format. Include the issue template
   // so that the parser can extract the metadata from the issue.
   const reservation = parseIssue(
-    core.getInput('parsed-issue-body', { required: true }),
+    github.context.issue.body,
     readFileSync(
       `${core.getInput('workspace', { required: true })}/.github/ISSUE_TEMPLATE/${core.getInput('issue-form-template', { required: true })}`,
       'utf8'

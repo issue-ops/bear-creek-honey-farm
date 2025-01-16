@@ -41,10 +41,7 @@ export default async (field) => {
     `${core.getInput('workspace', { required: true })}/.github/ISSUE_TEMPLATE/${core.getInput('issue-form-template', { required: true })}`,
     'utf8'
   )
-  const reservation = parseIssue(
-    core.getInput('parsed-issue-body', { required: true }),
-    issueTemplateBody
-  )
+  const reservation = parseIssue(github.context.issue.body, issueTemplateBody)
 
   // Get the list of rooms from the JSON file. In a real-world scenario, you
   // would likely fetch this data from a database, API, or another source.
