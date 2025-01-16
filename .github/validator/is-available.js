@@ -36,7 +36,7 @@ export default async (field) => {
   // Parse the issue body into a more usable format. Include the issue template
   // so that the parser can extract the metadata from the issue.
   const issueTemplateBody = readFileSync(
-    `../ISSUE_TEMPLATE/${core.getInput('issue-form-template', { required: true })}`,
+    `${core.getInput('workspace', { required: true })}/.github/ISSUE_TEMPLATE/${core.getInput('issue-form-template', { required: true })}`,
     'utf8'
   )
   const parsedIssueBody = JSON.parse(
