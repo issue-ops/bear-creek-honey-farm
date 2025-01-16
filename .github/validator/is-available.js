@@ -56,7 +56,7 @@ export default async (field) => {
   )
 
   // Get the rooms that match the room type from the JSON file.
-  const matching = rooms.filter((room) => room.type === reservation.room)
+  const matching = rooms.filter((room) => room.type === reservation.room[0])
 
   // Get the conflicting reservations (any confirmed reservations with the same
   // room type and overlapping date ranges).
@@ -124,7 +124,7 @@ async function getConflictingReservations(
     const existingReservation = parseIssue(issue.body, issueTemplateBody)
 
     // Ignore reservations where the room type does not match.
-    if (existingReservation.room !== reservation.room) return false
+    if (existingReservation.room[0] !== reservation.room[0]) return false
 
     return (
       // New reservation's check-out date is between the existing reservation's
