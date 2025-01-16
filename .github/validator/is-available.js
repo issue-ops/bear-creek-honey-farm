@@ -45,7 +45,9 @@ export default async (field) => {
 
   // Get the list of rooms from the JSON file. In a real-world scenario, you
   // would likely fetch this data from a database, API, or another source.
-  const rooms = (await import('./rooms.json')).default
+  const rooms = await import('./rooms.json', {
+    assert: { type: 'json' }
+  })
 
   // Get the rooms that match the room type from the JSON file.
   const matching = rooms.filter((room) => room.type === reservation.room)
