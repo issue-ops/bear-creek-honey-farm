@@ -50,6 +50,8 @@ export default async (field) => {
     )
   )
 
+  console.log(reservation)
+
   // Get the rooms that match the room type from the JSON file.
   const matching = rooms.filter((room) => room.type === reservation.room)
 
