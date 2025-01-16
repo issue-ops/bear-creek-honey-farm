@@ -16,6 +16,7 @@
  */
 export default async (field) => {
   const { readFileSync } = await import('fs')
+  const core = await import('@actions/core')
 
   // In this validator, the only type of input we are expecting is a `string` (a
   // numeric string). If the field is not a string, return an error message. In
