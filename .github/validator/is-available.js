@@ -35,8 +35,6 @@ export default async (field) => {
   const { parseIssue } = await import('@github/issue-parser')
   const { readFileSync } = await import('fs')
 
-  console.log(github.context)
-
   // Parse the issue body into a more usable format. Include the issue template
   // so that the parser can extract the metadata from the issue.
   const issueTemplateBody = readFileSync(
@@ -44,6 +42,8 @@ export default async (field) => {
     'utf8'
   )
   const reservation = parseIssue(github.context.issue.body, issueTemplateBody)
+
+  console.log(reservation)
 
   // Get the list of rooms from the JSON file. In a real-world scenario, you
   // would likely fetch this data from a database, API, or another source.
