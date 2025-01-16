@@ -158,6 +158,5 @@ jobs:
         uses: issue-ops/demo-reservation-action@main
         with:
           action: cancel
-          issue_body: ${{ steps.parse.outputs.json }}
           github_token: ${{ steps.token.outputs.token }}
           workspace: ${{ github.workspace }}
