@@ -15,6 +15,8 @@
  * @returns {Promise<string>} An error message or `'success'`
  */
 export default async (field) => {
+  const { readFileSync } = await import('fs')
+
   // In this validator, the only type of input we are expecting is a `string` (a
   // numeric string). If the field is not a string, return an error message. In
   // each custom validator, you can define the rules for what is valid input and
@@ -28,7 +30,12 @@ export default async (field) => {
 
   // Get the list of rooms from the JSON file. In a real-world scenario, you
   // would likely fetch this data from a database, API, or another source.
-  const rooms = (await import('./rooms.json')).default
+  const rooms = JSON.parse(
+    readFileSync(
+      `${core.getInput('workspace', { required: true })}/.github/validator/rooms.json`,
+      'utf8'
+    )
+  )
 
   // Get the rooms that match the room type from the JSON file.
   const matching = rooms.filter((room) => room.type === field)
