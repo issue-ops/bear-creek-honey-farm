@@ -38,12 +38,16 @@ export default async (field) => {
     )
   )
 
-  console.log(rooms)
+  // Parse the issue body into a more usable format. Include the issue template
+  // so that the parser can extract the metadata from the issue.
+  const parsedIssueBody = JSON.parse(
+    core.getInput('parsed-issue-body', { required: true })
+  )
 
-  console.log(field)
+  console.log(JSON.stringify(parsedIssueBody))
 
   // Get the rooms that match the room type from the JSON file.
-  const matching = rooms.filter((room) => room.type === field)
+  const matching = rooms.filter((room) => room.type === parsedIssueBody.room)
 
   console.log(matching)
 
