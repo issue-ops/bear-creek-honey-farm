@@ -24,7 +24,12 @@ export default async (field) => {
 
   // In this validator, we simply want to verify the provided input matches a
   // date in the format `MM/DD/YYYY`. If it does not, return an error message.
-  if (!/^\d{2}\/\d{2}\/\d{4}$/.test(field))
+  if (
+    // Must be in the format MM/DD/YYYY
+    !/^\d{2}\/\d{2}\/\d{4}$/.test(field) ||
+    // Must be a valid date
+    isNaN(new Date(field))
+  )
     return 'Field must be a date (MM/DD/YYYY)'
 
   // We can also check if the date is in the future. If it is not, return an

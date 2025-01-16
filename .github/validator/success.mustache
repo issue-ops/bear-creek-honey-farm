@@ -1,0 +1,30 @@
+# :tada: **Reservation Request Validated**
+
+Your request has been validated! The following details were parsed from your
+request.
+
+<!--prettier-ignore-start-->
+<!--markdownlint-disable MD034-->
+
+| Key        | Value      |
+| ---------- | ---------- |
+{{#each issue}}
+| `{{@key}}` | {{{newlines this}}} |
+{{/each}}
+
+<!--prettier-ignore-end-->
+
+- If you would like to confirm this reservation request, please comment on this
+  issue with `/reserve`. This will ensure your reservation is processed in a
+  timely manner.
+- If you would like to make any changes to your reservation, please edit your
+  original issue body.
+- If you would like to cancel your reservation, please either close this issue
+  or comment with `/cancel`.
+
+Thank you for choosing Bear Creek Honey Farm!
+
+> [!IMPORTANT]
+>
+> No actual reservation will be made. This is a demo repository and not
+> connected to any real systems.
