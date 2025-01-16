@@ -1,0 +1,163 @@
+name: Process Issue Comment
+
+on:
+  issue_comment:
+    types:
+      - created
+
+permissions:
+  contents: write
+  id-token: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  reserve:
+    name: (/reserve) Submit Reservation
+    runs-on: ubuntu-latest
+
+    # This job should only be run when the following conditions are true:
+    #
+    # - A user comments `/reserve` on the issue.
+    # - The issue has the `reservation` label.
+    # - The issue has the `validated` label.
+    # - The issue does not have the `confirmed` label.
+    # - The issue is open.
+    if: |
+      startsWith(github.event.comment.body, '/reserve') &&
+      contains(github.event.issue.labels.*.name, 'reservation') == true &&
+      contains(github.event.issue.labels.*.name, 'validated') == true &&
+      contains(github.event.issue.labels.*.name, 'confirmed') == false &&
+      github.event.issue.state == 'open'
+
+    steps:
+      # GitHub App authentication is required if you want to interact with any
+      # resources outside the scope of the repository this workflow runs in.
+      - name: Get GitHub App Token
+        id: token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ vars.ISSUEOPS_APP_ID }}
+          private-key: ${{ secrets.ISSUEOPS_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+
+      # Remove the validated label. This will be re-added if validation passes.
+      - name: Remove Validated Label
+        id: remove-label
+        uses: issue-ops/labeler@v2
+        with:
+          action: remove
+          github_token: ${{ steps.token.outputs.token }}
+          labels: |
+            validated
+          issue_number: ${{ github.event.issue.number }}
+          repository: ${{ github.repository }}
+
+      # Parse the issue body into machine-readable JSON, so that it can be
+      # processed by the rest of the workflow.
+      - name: Parse Issue body
+        id: parse
+        uses: issue-ops/parser@v4
+        with:
+          body: ${{ github.event.issue.body }}
+          issue-form-template: reservation.yml
+          workspace: ${{ github.workspace }}
+
+      # Validate early, and validate often! Validation should be run any time an
+      # issue is interacted with, to ensure that any changes to the issue body
+      # are valid.
+      - name: Validate Reservation Request
+        id: validate
+        uses: issue-ops/validator@v3
+        with:
+          add-comment: false # Don't add another validation comment.
+          github-token: ${{ steps.token.outputs.token }}
+          issue-form-template: reservation.yml
+          issue-number: ${{ github.event.issue.number }}
+          parsed-issue-body: ${{ steps.parse.outputs.json }}
+          workspace: ${{ github.workspace }}
+
+      # If validation passed, add the validated label to the issue.
+      - if: ${{ steps.validate.outputs.result == 'success' }}
+        name: Add Validated Label
+        id: add-label
+        uses: issue-ops/labeler@v2
+        with:
+          action: add
+          github_token: ${{ steps.token.outputs.token }}
+          labels: |
+            validated
+          issue_number: ${{ github.event.issue.number }}
+          repository: ${{ github.repository }}
+
+      # If validation succeeded, process the reservation request.
+      - if: ${{ steps.validate.outputs.result == 'success' }}
+        name: Process Reservation Request
+        id: process
+        # When using custom actions, make sure to pin the version to a specific
+        # commit or release tag!
+        uses: issue-ops/demo-reservation-action@main
+        with:
+          action: reserve
+          issue_body: ${{ steps.parse.outputs.json }}
+          github_token: ${{ steps.token.outputs.token }}
+          workspace: ${{ github.workspace }}
+
+      # If validation failed, add a comment to the issue explaining the failure.
+      - if: ${{ steps.validate.outputs.result == 'failure' }}
+        name: Add Validation Failure Comment
+        id: add-failure-comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `:sob: Something went wrong processing your request! It looks like it is no longer valid. You can update your request by editing the issue body. Or, you can close this issue and submit a new one.
+
+              The following validation error(s) occurred:
+
+              ${JSON.parse('${{ steps.validate.outputs.errors }}').map(error => `- ${error}`).join('\n')}
+              `
+            })
+
+  cancel:
+    name: (/cancel) Cancel Reservation
+    runs-on: ubuntu-latest
+
+    # This job should only be run when the following conditions are true:
+    #
+    # - A user comments `/cancel` on the issue.
+    # - The issue has the `reservation` label.
+    # - The issue is open.
+    #
+    # Since the request is being cancelled, we don't need to check if it is
+    # valid. It can just be closed.
+    if: |
+      startsWith(github.event.comment.body, '/cancel') &&
+      contains(github.event.issue.labels.*.name, 'reservation') == true &&
+      github.event.issue.state == 'open'
+
+    steps:
+      # GitHub App authentication is required if you want to interact with any
+      # resources outside the scope of the repository this workflow runs in.
+      - name: Get GitHub App Token
+        id: token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ vars.ISSUEOPS_APP_ID }}
+          private-key: ${{ secrets.ISSUEOPS_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+
+      # Process the cancellation request.
+      - name: Process Reservation Request
+        id: process
+        # When using custom actions, make sure to pin the version to a specific
+        # commit or release tag!
+        uses: issue-ops/demo-reservation-action@main
+        with:
+          action: cancel
+          issue_body: ${{ steps.parse.outputs.json }}
+          github_token: ${{ steps.token.outputs.token }}
+          workspace: ${{ github.workspace }}

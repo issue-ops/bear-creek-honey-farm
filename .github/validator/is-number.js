@@ -26,6 +26,17 @@ export default async (field) => {
   // integer.
   if (!Number.isInteger(Number(field))) return 'Field must be a number'
 
+  // Get the list of rooms from the JSON file. In a real-world scenario, you
+  // would likely fetch this data from a database, API, or another source.
+  const rooms = (await import('./rooms.json')).default
+
+  // Get the rooms that match the room type from the JSON file.
+  const matching = rooms.filter((room) => room.type === field)
+
+  // If the matching room does not support this many guests, return an error.
+  if (matching[0].max_guests < Number(field))
+    return 'Room does not support that many guests'
+
   // If the input is a valid number, return `'success'`
   return 'success'
 }

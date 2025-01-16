@@ -16,6 +16,7 @@ jobs:
     name: Validate Reservation
     runs-on: ubuntu-latest
 
+    # This job should only be run on issues with the `reservation` label.
     if: |
       contains(github.event.issue.labels.*.name, 'reservation')
 
@@ -98,16 +99,3 @@ jobs:
             validated
           issue_number: ${{ github.event.issue.number }}
           repository: ${{ github.repository }}
-
-      # If validation succeeded, process the reservation request.
-      - if: ${{ steps.validate.outputs.result == 'success' }}
-        name: Process Reservation Request
-        id: process
-        # When using custom actions, make sure to pin the version to a specific
-        # commit or release tag!
-        uses: issue-ops/demo-reservation-action@main
-        with:
-          action: init
-          issue_body: ${{ steps.parse.outputs.json }}
-          github_token: ${{ steps.token.outputs.token }}
-          workspace: ${{ github.workspace }}

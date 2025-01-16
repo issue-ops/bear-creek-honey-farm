@@ -1,0 +1,58 @@
+[
+  {
+    "number": 1,
+    "type": "Single Queen",
+    "price": 100,
+    "max_guests": 2,
+    "amenities": ["Breakfast", "Wi-Fi"]
+  },
+  {
+    "number": 2,
+    "type": "Single Queen",
+    "price": 100,
+    "max_guests": 2,
+    "amenities": ["Breakfast", "Wi-Fi"]
+  },
+  {
+    "number": 3,
+    "type": "Single Queen",
+    "price": 100,
+    "max_guests": 2,
+    "amenities": ["Breakfast", "Wi-Fi"]
+  },
+  {
+    "number": 4,
+    "type": "Double Queen",
+    "price": 200,
+    "max_guests": 4,
+    "amenities": ["Breakfast", "Lunch", "Wi-Fi"]
+  },
+  {
+    "number": 5,
+    "type": "Double Queen",
+    "price": 200,
+    "max_guests": 4,
+    "amenities": ["Breakfast", "Lunch", "Wi-Fi"]
+  },
+  {
+    "number": 6,
+    "type": "Double Queen",
+    "price": 200,
+    "max_guests": 4,
+    "amenities": ["Breakfast", "Lunch", "Wi-Fi"]
+  },
+  {
+    "number": 7,
+    "type": "King Suite",
+    "price": 400,
+    "max_guests": 2,
+    "amenities": ["Breakfast", "Lunch", "Dinner", "Wi-Fi", "Hot Tub"]
+  },
+  {
+    "number": 8,
+    "type": "King Suite",
+    "price": 400,
+    "max_guests": 2,
+    "amenities": ["Breakfast", "Lunch", "Dinner", "Wi-Fi", "Hot Tub"]
+  }
+]
