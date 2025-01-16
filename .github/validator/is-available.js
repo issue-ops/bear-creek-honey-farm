@@ -41,7 +41,7 @@ export default async (field) => {
     `${core.getInput('workspace', { required: true })}/.github/ISSUE_TEMPLATE/${core.getInput('issue-form-template', { required: true })}`,
     'utf8'
   )
-  console.log(github.context.issue.body)
+  console.log(github.context)
   const reservation = parseIssue(github.context.issue.body, issueTemplateBody)
 
   console.log(reservation)
