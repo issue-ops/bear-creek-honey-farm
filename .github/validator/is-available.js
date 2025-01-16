@@ -45,7 +45,12 @@ export default async (field) => {
 
   // Get the list of rooms from the JSON file. In a real-world scenario, you
   // would likely fetch this data from a database, API, or another source.
-  const rooms = JSON.parse(readFileSync('./rooms.json', 'utf8'))
+  const rooms = JSON.parse(
+    readFileSync(
+      `${core.getInput('workspace', { required: true })}/.github/validator/rooms.json`,
+      'utf8'
+    )
+  )
 
   // Get the rooms that match the room type from the JSON file.
   const matching = rooms.filter((room) => room.type === reservation.room)
