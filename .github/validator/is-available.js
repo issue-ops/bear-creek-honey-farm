@@ -60,12 +60,11 @@ export default async (field) => {
 
   // Get the conflicting reservations (any confirmed reservations with the same
   // room type and overlapping date ranges).
-  console.log(github.context.payload.repository)
   const conflicting = await getConflictingReservations(
     reservation,
     issueTemplateBody,
-    github.context.payload.repository.name,
-    github.context.payload.repository.owner.login
+    github.context.payload.repository.owner.login,
+    github.context.payload.repository.name
   )
 
   // If there are conflicting reservations greater than or equal to the number
