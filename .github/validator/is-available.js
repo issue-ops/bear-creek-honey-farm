@@ -41,13 +41,10 @@ export default async (field) => {
     `${core.getInput('workspace', { required: true })}/.github/ISSUE_TEMPLATE/${core.getInput('issue-form-template', { required: true })}`,
     'utf8'
   )
-  console.log(github)
   const reservation = parseIssue(
     github.context.payload.issue.body,
     issueTemplateBody
   )
-
-  console.log(reservation)
 
   // Get the list of rooms from the JSON file. In a real-world scenario, you
   // would likely fetch this data from a database, API, or another source.
@@ -66,8 +63,8 @@ export default async (field) => {
   const conflicting = await getConflictingReservations(
     reservation,
     issueTemplateBody,
-    github.context.repo.owner,
-    github.context.repo.repo
+    github.context.payload.repository.name,
+    github.context.payload.repository.owner.name
   )
 
   // If there are conflicting reservations greater than or equal to the number
