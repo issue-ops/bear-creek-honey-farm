@@ -185,6 +185,16 @@ jobs:
           private-key: ${{ secrets.ISSUEOPS_APP_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
 
+      # Parse the issue body into machine-readable JSON, so that it can be
+      # processed by the rest of the workflow.
+      - name: Parse Issue body
+        id: parse
+        uses: issue-ops/parser@v4
+        with:
+          body: ${{ github.event.issue.body }}
+          issue-form-template: reservation.yml
+          workspace: ${{ github.workspace }}
+
       # Process the cancellation request.
       - name: Process Reservation Request
         id: process
@@ -194,5 +204,6 @@ jobs:
         with:
           action: cancel
           github_token: ${{ steps.token.outputs.token }}
+          issue_body: ${{ steps.parse.outputs.json }}
           issue_template_path: .github/ISSUE_TEMPLATE/reservation.yml
           project_number: 3
