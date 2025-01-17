@@ -120,7 +120,7 @@ jobs:
         with:
           action: reserve
           issue_body: ${{ steps.parse.outputs.json }}
-          issue_template_path: reservation.yml
+          issue_template_path: .github/ISSUE_TEMPLATE/reservation.yml
           github_token: ${{ steps.token.outputs.token }}
           project_id: 3
 
@@ -190,5 +190,5 @@ jobs:
         with:
           action: cancel
           github_token: ${{ steps.token.outputs.token }}
-          issue_template_path: reservation.yml
+          issue_template_path: .github/ISSUE_TEMPLATE/reservation.yml
           project_id: 3
