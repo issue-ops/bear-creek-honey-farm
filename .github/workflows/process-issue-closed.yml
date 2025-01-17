@@ -19,11 +19,14 @@ jobs:
     # This job should only be run when the following conditions are true:
     #
     # - The issue has the `reservation` label.
+    # - The user who closed the issue is not the IssueOps bot (prevents infinite
+    #   loops).
     #
     # Since the request is being cancelled, we don't need to check if it is
     # valid. It can just be closed.
     if: |
-      contains(github.event.issue.labels.*.name, 'reservation') == true
+      contains(github.event.issue.labels.*.name, 'reservation') == true &&
+      github.event.issue.user.login != 'issueops-bot[bot]'
 
     steps:
       # This is required to ensure the issue form template is included in the
