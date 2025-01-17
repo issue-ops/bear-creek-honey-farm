@@ -101,6 +101,7 @@ jobs:
           action: reserve
           issue_body: ${{ steps.parse.outputs.json }}
           github_token: ${{ steps.token.outputs.token }}
+          project_id: 3
           workspace: ${{ github.workspace }}
 
       # If validation failed, add a comment to the issue explaining the failure.
@@ -162,4 +163,5 @@ jobs:
         with:
           action: cancel
           github_token: ${{ steps.token.outputs.token }}
+          project_id: 3
           workspace: ${{ github.workspace }}
