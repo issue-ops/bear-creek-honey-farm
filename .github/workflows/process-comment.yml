@@ -68,7 +68,7 @@ jobs:
       # are valid.
       - name: Validate Reservation Request
         id: validate
-        uses: issue-ops/validator@main
+        uses: issue-ops/validator@v3
         with:
           add-comment: false # Don't add another validation comment.
           github-token: ${{ steps.token.outputs.token }}
