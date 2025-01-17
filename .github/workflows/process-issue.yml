@@ -63,6 +63,7 @@ jobs:
           labels: |
             cancelled
             confirmed
+            expired
             validated
           issue_number: ${{ github.event.issue.number }}
           repository: ${{ github.repository }}

@@ -23,12 +23,14 @@ jobs:
     # - The issue has the `validated` label.
     # - The issue does not have the `confirmed` label.
     # - The issue is open.
+    # - The comment author is not the IssueOps bot (prevents infinite loops).
     if: |
       startsWith(github.event.comment.body, '/reserve') &&
       contains(github.event.issue.labels.*.name, 'reservation') == true &&
       contains(github.event.issue.labels.*.name, 'validated') == true &&
       contains(github.event.issue.labels.*.name, 'confirmed') == false &&
-      github.event.issue.state == 'open'
+      github.event.issue.state == 'open' &&
+      github.event.comment.user.login != 'issueops-bot[bot]'
 
     steps:
       # This is required to ensure the issue form template and any validation
@@ -155,13 +157,15 @@ jobs:
     # - A user comments `/cancel` on the issue.
     # - The issue has the `reservation` label.
     # - The issue is open.
+    # - The comment author is not the IssueOps bot (prevents infinite loops).
     #
     # Since the request is being cancelled, we don't need to check if it is
     # valid. It can just be closed.
     if: |
       startsWith(github.event.comment.body, '/cancel') &&
       contains(github.event.issue.labels.*.name, 'reservation') == true &&
-      github.event.issue.state == 'open'
+      github.event.issue.state == 'open' &&
+      github.event.comment.user.login != 'issueops-bot[bot]'
 
     steps:
       # This is required to ensure the issue form template is included in the
