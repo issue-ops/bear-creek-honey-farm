@@ -30,7 +30,7 @@ jobs:
       contains(github.event.issue.labels.*.name, 'validated') == true &&
       contains(github.event.issue.labels.*.name, 'confirmed') == false &&
       github.event.issue.state == 'open' &&
-      github.event.comment.user.login != 'issueops-bot[bot]'
+      github.actor != 'issueops-bot[bot]'
 
     steps:
       # This is required to ensure the issue form template and any validation
@@ -165,7 +165,7 @@ jobs:
       startsWith(github.event.comment.body, '/cancel') &&
       contains(github.event.issue.labels.*.name, 'reservation') == true &&
       github.event.issue.state == 'open' &&
-      github.event.comment.user.login != 'issueops-bot[bot]'
+      github.actor != 'issueops-bot[bot]'
 
     steps:
       # This is required to ensure the issue form template is included in the
