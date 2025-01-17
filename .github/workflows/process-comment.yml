@@ -6,7 +6,7 @@ on:
       - created
 
 permissions:
-  contents: write
+  contents: read
   id-token: write
   issues: write
   pull-requests: write
@@ -104,6 +104,9 @@ jobs:
           workspace: ${{ github.workspace }}
 
       # If validation failed, add a comment to the issue explaining the failure.
+      # This is different than the validation message that is added when the
+      # issue is opened/edited, since it occurs during the processing of a
+      # comment being created.
       - if: ${{ steps.validate.outputs.result == 'failure' }}
         name: Add Validation Failure Comment
         id: add-failure-comment
