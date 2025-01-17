@@ -100,6 +100,7 @@ jobs:
         with:
           action: reserve
           issue_body: ${{ steps.parse.outputs.json }}
+          issue_template_path: reservation.yml
           github_token: ${{ steps.token.outputs.token }}
           project_id: 3
           workspace: ${{ github.workspace }}
@@ -163,5 +164,6 @@ jobs:
         with:
           action: cancel
           github_token: ${{ steps.token.outputs.token }}
+          issue_template_path: reservation.yml
           project_id: 3
           workspace: ${{ github.workspace }}
