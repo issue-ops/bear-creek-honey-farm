@@ -103,7 +103,6 @@ jobs:
           issue_template_path: reservation.yml
           github_token: ${{ steps.token.outputs.token }}
           project_id: 3
-          workspace: ${{ github.workspace }}
 
       # If validation failed, add a comment to the issue explaining the failure.
       # This is different than the validation message that is added when the
@@ -166,4 +165,3 @@ jobs:
           github_token: ${{ steps.token.outputs.token }}
           issue_template_path: reservation.yml
           project_id: 3
-          workspace: ${{ github.workspace }}
