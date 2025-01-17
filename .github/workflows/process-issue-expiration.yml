@@ -44,6 +44,5 @@ jobs:
         with:
           action: expire
           github_token: ${{ steps.token.outputs.token }}
-          issue_body: ${{ steps.parse.outputs.json }}
           issue_template_path: .github/ISSUE_TEMPLATE/reservation.yml
           project_number: 3
