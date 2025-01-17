@@ -52,14 +52,17 @@ jobs:
           private-key: ${{ secrets.ISSUEOPS_APP_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
 
-      # Remove the validated label. This will be re-added if validation passes.
-      - name: Remove Validated Label
+      # Remove any labels and start "fresh". This is important because the
+      # issue may have been closed and reopened.
+      - name: Remove Labels
         id: remove-label
         uses: issue-ops/labeler@v2
         with:
           action: remove
           github_token: ${{ steps.token.outputs.token }}
           labels: |
+            cancelled
+            confirmed
             validated
           issue_number: ${{ github.event.issue.number }}
           repository: ${{ github.repository }}
@@ -100,3 +103,16 @@ jobs:
             validated
           issue_number: ${{ github.event.issue.number }}
           repository: ${{ github.repository }}
+
+      # Process the initial request.
+      - name: Process Reservation Request
+        id: process
+        # When using custom actions, make sure to pin the version to a specific
+        # commit or release tag!
+        uses: issue-ops/demo-reservation-action@main
+        with:
+          action: init
+          github_token: ${{ steps.token.outputs.token }}
+          issue_body: ${{ steps.parse.outputs.json }}
+          issue_template_path: .github/ISSUE_TEMPLATE/reservation.yml
+          project_number: 3

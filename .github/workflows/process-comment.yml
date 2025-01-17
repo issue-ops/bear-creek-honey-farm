@@ -119,9 +119,9 @@ jobs:
         uses: issue-ops/demo-reservation-action@main
         with:
           action: reserve
+          github_token: ${{ steps.token.outputs.token }}
           issue_body: ${{ steps.parse.outputs.json }}
           issue_template_path: .github/ISSUE_TEMPLATE/reservation.yml
-          github_token: ${{ steps.token.outputs.token }}
           project_number: 3
 
       # If validation failed, add a comment to the issue explaining the failure.
