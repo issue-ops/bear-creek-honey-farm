@@ -26,9 +26,12 @@ jobs:
       contains(github.event.issue.labels.*.name, 'reservation') == true
 
     steps:
-      # NOTE: The `actions/checkout` step is not included here. This is because
-      #       we don't need any scripts or resources from this repository in
-      #       order to process a closed issue.
+      # This is required to ensure the issue form template is included in the
+      # workspace. However, we don't need to install any dependencies since we
+      # aren't running validation on closed issues.
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
 
       # GitHub App authentication is required if you want to interact with any
       # resources outside the scope of the repository this workflow runs in.
@@ -40,6 +43,16 @@ jobs:
           private-key: ${{ secrets.ISSUEOPS_APP_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
 
+      # Parse the issue body into machine-readable JSON, so that it can be
+      # processed by the rest of the workflow.
+      - name: Parse Issue body
+        id: parse
+        uses: issue-ops/parser@v4
+        with:
+          body: ${{ github.event.issue.body }}
+          issue-form-template: reservation.yml
+          workspace: ${{ github.workspace }}
+
       # Process the cancellation request.
       - name: Process Reservation Request
         id: process
@@ -48,5 +61,6 @@ jobs:
         uses: issue-ops/demo-reservation-action@main
         with:
           action: cancel
+          issue_body: ${{ steps.parse.outputs.json }}
           github_token: ${{ steps.token.outputs.token }}
           project_number: 3
