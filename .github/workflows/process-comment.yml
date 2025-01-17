@@ -122,7 +122,7 @@ jobs:
           issue_body: ${{ steps.parse.outputs.json }}
           issue_template_path: .github/ISSUE_TEMPLATE/reservation.yml
           github_token: ${{ steps.token.outputs.token }}
-          project_id: 3
+          project_number: 3
 
       # If validation failed, add a comment to the issue explaining the failure.
       # This is different than the validation message that is added when the
@@ -191,4 +191,4 @@ jobs:
           action: cancel
           github_token: ${{ steps.token.outputs.token }}
           issue_template_path: .github/ISSUE_TEMPLATE/reservation.yml
-          project_id: 3
+          project_number: 3
