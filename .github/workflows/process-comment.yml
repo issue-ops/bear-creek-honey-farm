@@ -31,6 +31,12 @@ jobs:
       github.event.issue.state == 'open'
 
     steps:
+      # This is required to ensure the issue form template is included in the
+      # workspace.
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
       # GitHub App authentication is required if you want to interact with any
       # resources outside the scope of the repository this workflow runs in.
       - name: Get GitHub App Token
@@ -144,6 +150,12 @@ jobs:
       github.event.issue.state == 'open'
 
     steps:
+      # This is required to ensure the issue form template is included in the
+      # workspace.
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
       # GitHub App authentication is required if you want to interact with any
       # resources outside the scope of the repository this workflow runs in.
       - name: Get GitHub App Token
