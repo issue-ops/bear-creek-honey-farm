@@ -32,7 +32,7 @@ jobs:
       # This is required to ensure the issue form template is included in the
       # workspace. However, we don't need to install any dependencies since we
       # aren't running validation on closed issues.
-      - name: Checkout
+      - name: Checkout ${{ github.event.issue.user.login }}'s repository
         id: checkout
         uses: actions/checkout@v4
 
