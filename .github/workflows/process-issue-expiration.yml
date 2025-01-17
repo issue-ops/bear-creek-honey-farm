@@ -1,9 +1,10 @@
-name: Process Issue Closed
+name: Process Issue Expiration
 
+# Run once per day, or when invoked manually.
 on:
-  issues:
-    types:
-      - closed
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -12,18 +13,9 @@ permissions:
   pull-requests: write
 
 jobs:
-  cancel:
-    name: (Issue Closed) Cancel Reservation
+  check:
+    name: Check Expiring Reservations
     runs-on: ubuntu-latest
-
-    # This job should only be run when the following conditions are true:
-    #
-    # - The issue has the `reservation` label.
-    #
-    # Since the request is being cancelled, we don't need to check if it is
-    # valid. It can just be closed.
-    if: |
-      contains(github.event.issue.labels.*.name, 'reservation') == true
 
     steps:
       # This is required to ensure the issue form template is included in the
@@ -43,24 +35,14 @@ jobs:
           private-key: ${{ secrets.ISSUEOPS_APP_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
 
-      # Parse the issue body into machine-readable JSON, so that it can be
-      # processed by the rest of the workflow.
-      - name: Parse Issue body
-        id: parse
-        uses: issue-ops/parser@v4
-        with:
-          body: ${{ github.event.issue.body }}
-          issue-form-template: reservation.yml
-          workspace: ${{ github.workspace }}
-
-      # Process the cancellation request.
-      - name: Process Reservation Request
+      # Process the expired reservations.
+      - name: Process Reservation Expiration
         id: process
         # When using custom actions, make sure to pin the version to a specific
         # commit or release tag!
         uses: issue-ops/demo-reservation-action@main
         with:
-          action: cancel
+          action: expire
           github_token: ${{ steps.token.outputs.token }}
           issue_body: ${{ steps.parse.outputs.json }}
           issue_template_path: .github/ISSUE_TEMPLATE/reservation.yml
