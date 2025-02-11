@@ -192,7 +192,7 @@ export default function Home() {
             <CarouselNext />
           </Carousel>
           <div className="w-full pl-16 pr-16">
-            <div className="bg-green-100 bg-opacity-50 rounded-lg shadow-lg">
+            <div className="bg-black/50 rounded-lg shadow-lg">
               <div className="w-full p-4 text-center">
                 <p>
                   Welcome to Bear Creek Honey Farm, a charming bed and breakfast
