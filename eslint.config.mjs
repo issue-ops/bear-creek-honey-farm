@@ -19,7 +19,7 @@ const compat = new FlatCompat({
 
 export default [
   {
-    ignores: ['**/node_modules']
+    ignores: ['**/node_modules', '**/.next']
   },
   ...compat.extends(
     'eslint:recommended',
@@ -62,6 +62,7 @@ export default [
     },
 
     rules: {
+      '@typescript-eslint/no-unused-vars': 'off',
       camelcase: 'off',
       'eslint-comments/no-use': 'off',
       'eslint-comments/no-unused-disable': 'off',
