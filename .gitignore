@@ -24,6 +24,7 @@ tmp/
 
 # production
 build
+out
 
 # local env files
 .env*.local
