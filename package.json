@@ -36,7 +36,7 @@
   "dependencies": {
     "@actions/core": "^1.11.1",
     "@actions/github": "^6.0.0",
-    "@github/issue-parser": "^1.0.1",
+    "@github/issue-parser": "^2.0.0",
     "@octokit/rest": "^21.1.0",
     "@primer/octicons-react": "^19.14.0",
     "@radix-ui/react-alert-dialog": "^1.1.6",
