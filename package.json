@@ -37,7 +37,7 @@
     "@actions/core": "^1.11.1",
     "@actions/github": "^6.0.0",
     "@github/issue-parser": "^2.0.0",
-    "@octokit/rest": "^21.1.0",
+    "@octokit/rest": "^21.1.1",
     "@primer/octicons-react": "^19.15.0",
     "@radix-ui/react-alert-dialog": "^1.1.6",
     "@radix-ui/react-dialog": "^1.1.6",
@@ -51,8 +51,8 @@
     "next-themes": "^0.4.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "tailwind-merge": "^3.0.1",
-    "tailwindcss": "^4.0.6",
+    "tailwind-merge": "^3.0.2",
+    "tailwindcss": "^4.0.9",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
