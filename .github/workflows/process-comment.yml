@@ -57,7 +57,7 @@ jobs:
       # resources outside the scope of the repository this workflow runs in.
       - name: Get GitHub App Token
         id: token
-        uses: actions/create-github-app-token@v1
+        uses: actions/create-github-app-token@v2
         with:
           app-id: ${{ vars.ISSUEOPS_APP_ID }}
           private-key: ${{ secrets.ISSUEOPS_APP_PRIVATE_KEY }}
@@ -179,7 +179,7 @@ jobs:
       # resources outside the scope of the repository this workflow runs in.
       - name: Get GitHub App Token
         id: token
-        uses: actions/create-github-app-token@v1
+        uses: actions/create-github-app-token@v2
         with:
           app-id: ${{ vars.ISSUEOPS_APP_ID }}
           private-key: ${{ secrets.ISSUEOPS_APP_PRIVATE_KEY }}
