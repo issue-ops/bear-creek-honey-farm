@@ -37,7 +37,7 @@
     "@actions/core": "^1.11.1",
     "@actions/github": "^6.0.0",
     "@github/issue-parser": "^2.0.0",
-    "@octokit/rest": "^21.1.1",
+    "@octokit/rest": "^22.0.0",
     "@primer/octicons-react": "^19.15.1",
     "@radix-ui/react-alert-dialog": "^1.1.11",
     "@radix-ui/react-dialog": "^1.1.6",
