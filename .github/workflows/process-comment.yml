@@ -37,7 +37,7 @@ jobs:
       # scripts are included in the workspace.
       - name: Checkout
         id: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # Since this workflow include custom validation scripts, we need to
       # install Node.js and any dependencies.
@@ -173,7 +173,7 @@ jobs:
       # install Node.js or any dependencies.
       - name: Checkout
         id: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # GitHub App authentication is required if you want to interact with any
       # resources outside the scope of the repository this workflow runs in.
