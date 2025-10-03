@@ -43,7 +43,7 @@ jobs:
       # install Node.js and any dependencies.
       - name: Setup Node.js
         id: setup-node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           cache: npm
           node-version-file: .node-version
@@ -133,7 +133,7 @@ jobs:
       - if: ${{ steps.validate.outputs.result == 'failure' }}
         name: Add Validation Failure Comment
         id: add-failure-comment
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             await github.rest.issues.createComment({
