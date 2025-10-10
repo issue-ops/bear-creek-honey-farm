@@ -134,6 +134,8 @@ jobs:
         name: Add Validation Failure Comment
         id: add-failure-comment
         uses: actions/github-script@v8
+        env:
+          ERRORS: ${{ steps.validate.outputs.errors }}
         with:
           script: |
             await github.rest.issues.createComment({
@@ -144,7 +146,7 @@ jobs:
 
               The following validation error(s) occurred:
 
-              ${JSON.parse('${{ steps.validate.outputs.errors }}').map(error => `- ${error}`).join('\n')}
+              ${JSON.parse(process.env.ERRORS || '{}').map(error => `- ${error}`).join('\n')}
               `
             })
 
