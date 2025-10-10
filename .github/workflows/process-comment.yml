@@ -146,7 +146,7 @@ jobs:
 
               The following validation error(s) occurred:
 
-              ${JSON.parse(process.env.ERRORS || '{}').map(error => `- ${error}`).join('\n')}
+              ${JSON.parse(process.env.ERRORS || '[]').map(error => `- ${error}`).join('\n')}
               `
             })
 
