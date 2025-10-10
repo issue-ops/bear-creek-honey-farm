@@ -19,7 +19,7 @@ const compat = new FlatCompat({
 
 export default [
   {
-    ignores: ['**/node_modules', '**/.next', '**/out']
+    ignores: ['**/node_modules', '**/.next', '**/out', 'next-env.d.ts']
   },
   ...compat.extends(
     'eslint:recommended',
