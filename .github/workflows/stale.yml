@@ -21,6 +21,6 @@ jobs:
         id: check
         uses: actions/stale@v10
         with:
-          stale-issue-lable: stale
+          stale-issue-label: stale
           stale-pr-label: stale
           only-labels: reservation
