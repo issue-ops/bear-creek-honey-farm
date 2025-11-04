@@ -50,7 +50,7 @@
     "next": "^15.5.4",
     "next-themes": "^0.4.6",
     "react": "^19.2.0",
-    "react-dom": "^19.1.1",
+    "react-dom": "^19.2.0",
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.16",
     "tailwindcss-animate": "^1.0.7"
@@ -61,7 +61,7 @@
     "@tailwindcss/postcss": "^4.1.16",
     "@types/node": "^24.10.0",
     "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.1.9",
+    "@types/react-dom": "^19.2.2",
     "@typescript-eslint/eslint-plugin": "^8.46.3",
     "@typescript-eslint/parser": "^8.31.1",
     "eslint": "^9.39.1",
