@@ -1,0 +1,26 @@
+name: Close Stale Issues
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  stale:
+    name: Close Stale Issues
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check for Stale Issues
+        id: check
+        uses: actions/stale@v10
+        with:
+          stale-issue-lable: stale
+          stale-pr-label: stale
+          only-labels: reservation
