@@ -14,12 +14,16 @@ import {
   DialogTrigger
 } from '@/components/ui/dialog'
 import HeroImage from '@/components/ui/hero-image'
+import { ThemeToggle } from '@/components/ui/theme-toggle'
 import { MarkGithubIcon } from '@primer/octicons-react'
 import Image from 'next/image'
 
 export default function Home() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen pb-20 pt-[20%] gap-16 font-[family-name:var(--font-geist-sans)]">
+      <div className="fixed top-4 right-4 z-50">
+        <ThemeToggle />
+      </div>
       <HeroImage />
       <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen pb-20 pt-[20%] font-[family-name:var(--font-geist-sans)]">
         <main className="flex flex-col gap-8 row-start-2 pt-16 mt-16 items-center">
