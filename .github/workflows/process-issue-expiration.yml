@@ -23,7 +23,7 @@ jobs:
       # aren't running validation on closed issues.
       - name: Checkout
         id: checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       # GitHub App authentication is required if you want to interact with any
       # resources outside the scope of the repository this workflow runs in.
