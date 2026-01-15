@@ -56,7 +56,7 @@ jobs:
       # issue may have been closed and reopened.
       - name: Remove Labels
         id: remove-label
-        uses: issue-ops/labeler@v3
+        uses: issue-ops/labeler@v4
         with:
           action: remove
           github_token: ${{ steps.token.outputs.token }}
@@ -96,7 +96,7 @@ jobs:
       - if: ${{ steps.validate.outputs.result == 'success' }}
         name: Add Validated Label
         id: add-label
-        uses: issue-ops/labeler@v3
+        uses: issue-ops/labeler@v4
         with:
           action: add
           github_token: ${{ steps.token.outputs.token }}
