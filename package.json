@@ -35,7 +35,7 @@
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^3.0.0",
-    "@actions/github": "^6.0.1",
+    "@actions/github": "^9.0.0",
     "@github/issue-parser": "^2.0.0",
     "@octokit/rest": "^22.0.1",
     "@primer/octicons-react": "^19.21.2",
