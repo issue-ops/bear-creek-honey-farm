@@ -34,7 +34,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^3.0.0",
+    "@actions/core": "^3.0.1",
     "@actions/github": "^9.0.0",
     "@github/issue-parser": "^2.0.0",
     "@octokit/rest": "^22.0.1",
@@ -47,12 +47,12 @@
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.6.0",
     "lucide-react": "^0.563.0",
-    "next": "^16.2.0",
+    "next": "^16.2.4",
     "next-themes": "^0.4.6",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
     "tailwind-merge": "^3.4.0",
-    "tailwindcss": "^4.1.18",
+    "tailwindcss": "^4.2.4",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
