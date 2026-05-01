@@ -133,7 +133,7 @@ jobs:
       - if: ${{ steps.validate.outputs.result == 'failure' }}
         name: Add Validation Failure Comment
         id: add-failure-comment
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         env:
           ERRORS: ${{ steps.validate.outputs.errors }}
         with:
